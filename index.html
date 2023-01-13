@@ -23,18 +23,7 @@ ethereumButton.addEventListener('click', () => {
 });
 
 window.onload = function() {
-  if (typeof window.ethereum == 'undefined') {
-    ethereumButton.disabled = false;
-    document.getElementById("needtoinstall").innerHTML = 'You need to install MetaMask!';
-  } else if (ethereum.selectedAddress == null) {
-      ethereumButton.disabled = false;
-      ethereumButton.innerHTML = 'Connect Wallet'
-    } else {
-      ethereumButton.disabled = true
-      const shortAddress = ethereum.selectedAddress;
-      const shortenAddress = shortAddress.slice(0, 5) + '...' + shortAddress.slice(shortAddress.length - 4);
-      ethereumButton.innerHTML = shortenAddress;
-      }
+  alert(ethereum.selectedAddress)
 };
 
 ethereum.on('accountsChanged', function (accounts) {
