@@ -17,39 +17,25 @@ ethereumButton.addEventListener('click', () => {
   const { ethereum } = window;
   if (ethereum && ethereum.isMetaMask) {
     ethereum.request({ method: 'eth_requestAccounts' });
-    ethereum.request({
-      method: 'wallet_addEthereumChain',
-      params: [{
-        chainId: '56',
-        chainName: 'BSC Mainnet',
-        nativeCurrency: {
-          name: 'BNB',
-          symbol: 'BNB',
-          decimals: 18
-        },
-        rpcUrls: ['https://bsc-dataseed1.binance.org/'],
-        blockExplorerUrls: ['https://bscscan.com']
-      }]
-    });
   } else {
     document.getElementById("needtoinstall").innerHTML = 'You need to install MetaMask!';
   }
 });
 
-// window.onload = function() {
-//   if (typeof window.ethereum == 'undefined') {
-//     ethereumButton.disabled = false;
-//     document.getElementById("needtoinstall").innerHTML = 'You need to install MetaMask!';
-//   } else if (ethereum.selectedAddress == null) {
-//       ethereumButton.disabled = false;
-//       ethereumButton.innerHTML = 'Connect Wallet'
-//     } else {
-//       ethereumButton.disabled = true
-//       const shortAddress = ethereum.selectedAddress;
-//       const shortenAddress = shortAddress.slice(0, 5) + '...' + shortAddress.slice(shortAddress.length - 4);
-//       ethereumButton.innerHTML = shortenAddress;
-//       }
-// };
+window.onload = function() {
+  if (typeof window.ethereum == 'undefined') {
+    ethereumButton.disabled = false;
+    document.getElementById("needtoinstall").innerHTML = 'You need to install MetaMask!';
+  } else if (ethereum.selectedAddress == null) {
+      ethereumButton.disabled = false;
+      ethereumButton.innerHTML = 'Connect Wallet'
+    } else {
+      ethereumButton.disabled = true
+      const shortAddress = ethereum.selectedAddress;
+      const shortenAddress = shortAddress.slice(0, 5) + '...' + shortAddress.slice(shortAddress.length - 4);
+      ethereumButton.innerHTML = shortenAddress;
+      }
+};
 
 ethereum.on('accountsChanged', function (accounts) {
   if (ethereum.selectedAddress == null) {
